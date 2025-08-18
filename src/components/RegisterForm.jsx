@@ -95,13 +95,13 @@ const RegisterForm = () => {
             <CustomInput key={index} {...item} onChange={handleOnChange} />
           );
         })}
-        <Form.Group className="mb-3">
+        {/* <Form.Group className="mb-3">
           <Form.Label>Role</Form.Label>
           <Form.Select aria-label="Default select example" name="role">
             <option value="student">Student</option>
             <option value="teacher">Teacher</option>
           </Form.Select>
-        </Form.Group>
+        </Form.Group> */}
         <div className="d-flex justify-content-between align-items-center">
           <Button variant="primary" type="submit">
             Register

@@ -8,6 +8,8 @@ import CustomInput from "./CustomInput";
 import { toast } from "react-toastify";
 
 const LoginForm = () => {
+  // Fetched from userContext.jsx
+  // This context provides user state and a function to set the user
   const { user, setUser } = useUser();
   const location = useLocation();
   const navigate = useNavigate();
@@ -42,12 +44,12 @@ const LoginForm = () => {
     e.preventDefault();
 
     let data = await loginUser(form);
-    if (data.success) {
+    if (data.status) {
       toast.success(data.message);
       setUser(data.user);
       localStorage.setItem("accessToken", data.accessToken);
     } else {
-      toast.error(data.error);
+      toast.error(data.message);
     }
   };
 
@@ -57,10 +59,10 @@ const LoginForm = () => {
     setForm(tempForm);
   };
 
-  const pastLocation = location?.state?.from?.pathname || "/dashboard";
+  const lastLocation = location?.state?.from?.pathname || "/dashboard";
 
   useEffect(() => {
-    user?._id && navigate(pastLocation);
+    user?._id && navigate(lastLocation);
   }, [user?._id]);
 
   return (
