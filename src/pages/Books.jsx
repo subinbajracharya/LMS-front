@@ -9,7 +9,11 @@ const Books = () => {
     // Sample data for books, to be replace with actual data from API or state management
     {
       id: 1,
-      date: "2023-10-01",
+      status: {
+        available: true,
+        borrowed: false,
+        reserved: false,
+      },
       title: "The Great Gatsby",
       borrowed_in: "2023-10-02",
       returned_on: "2023-10-15",
@@ -48,8 +52,8 @@ const Books = () => {
               <Form.Check type="checkbox" value="all" />
             </th> */}
             <th>#</th>
-            <th>Date</th>
             <th>Book Title</th>
+            <th>Status</th>
             <th>Borrowed In</th>
             <th>Returned On</th>
             <th>Action</th>
@@ -63,8 +67,16 @@ const Books = () => {
                   <Form.Check type="checkbox" value={book.id} />
                 </td> */}
                 <td>{index + 1}</td>
-                <td>{book.date.split("T")[0]}</td>
                 <td>{book.title}</td>
+                <td>
+                  {book.status
+                    ? book.status.available
+                      ? "Available"
+                      : book.status.borrowed
+                      ? "Borrowed"
+                      : "Reserved"
+                    : "N/A"}
+                </td>
                 <td>{book.borrowed_in}</td>
                 <td>{book.returned_on}</td>
                 <td>

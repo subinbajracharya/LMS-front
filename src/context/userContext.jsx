@@ -1,5 +1,5 @@
 import { useState, useContext, createContext } from "react";
-import { getUserDetail } from "../features/users/usersApi";
+import { getUserDetail } from "../features/users/usersApi.js";
 
 // Create context
 const UserContext = createContext();
