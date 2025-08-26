@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
-import { useUser } from "../context/userContext";
 import { Button, Form } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { loginUser } from "../features/users/usersApi";
 import CustomInput from "./CustomInput";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUserAction } from "../features/users/userActions";
 
 const LoginForm = () => {
   // Fetched from userContext.jsx
-  // This context provides user state and a function to set the user
-  const { user, setUser } = useUser();
+  // This context provides user state and a function to set the user state
+  const { user } = useSelector((store) => store.userStore);
+
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   let initialState = {
     email: "",
@@ -43,14 +45,10 @@ const LoginForm = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
 
-    let data = await loginUser(form);
-    if (data.status) {
-      toast.success(data.message);
-      setUser(data.user);
-      localStorage.setItem("accessToken", data.accessToken);
-    } else {
-      toast.error(data.message);
-    }
+    let data = await dispatch(loginUserAction(form));
+    console.log(data);
+
+    toast[data.status](data.message);
   };
 
   const handleOnChange = (e) => {

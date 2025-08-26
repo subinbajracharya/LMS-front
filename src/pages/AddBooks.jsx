@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const AddBooks = () => {
   // This component will handle adding new books to the library
@@ -46,9 +47,9 @@ const AddBooks = () => {
         <Button variant="primary" type="submit">
           {AddBooks[0].submitButton}
         </Button>
-        <Button variant="secondary" type="button" className="ms-2">
+        <Link to="/books" className="btn btn-secondary ms-2">
           {AddBooks[0].cancelButton}
-        </Button>
+        </Link>
       </Form>
     </div>
   );

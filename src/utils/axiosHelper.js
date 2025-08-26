@@ -1,13 +1,14 @@
 import axios from "axios"
 
-export const apiProcessor = async ({ method, url, data, isPrivate }) => {
+export const apiProcessor = async ({ method, url, data, isPrivate, contentType = "application/json" }) => {
     try {
         let response = await axios({
             method: method,
             url: url,
             data: data,
             headers: isPrivate ? {
-                Authorization: 'Bearer ' + localStorage.getItem("accessToken"),
+                Authorization: 'Bearer ' + sessionStorage.getItem("accessToken"),
+                "Content-Type": contentType
             } : {},
         })
 

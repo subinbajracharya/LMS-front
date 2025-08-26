@@ -1,4 +1,4 @@
-import { apiProcessor } from "../../utils/axiosHelper";
+import { apiProcessor } from "../../utils/axiosHelper.js";
 const apiUrl = import.meta.env.VITE_APP_API_URL + "/api/v1";
 
 export const registerUser = (obj) => {
@@ -17,10 +17,10 @@ export const loginUser = async (obj) => {
     })
 }
 
-export const getUserDetail = async () => {
+export const fetchUserDetail = async () => {
     return apiProcessor({
         method: 'GET',
-        url: `${apiUrl}/auth/user`,
+        url: `${apiUrl}/user/detail`,
         isPrivate: true,
     })
 }

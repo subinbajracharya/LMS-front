@@ -1,12 +1,12 @@
 import React from "react";
-import { useUser } from "../context/userContext";
 import { Navigate, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Auth = ({ children }) => {
   const location = useLocation();
 
   console.log("CURRENT PAGE", location);
-  const { user } = useUser();
+  const { user } = useSelector((store) => store.userStore);
 
   return (
     <>

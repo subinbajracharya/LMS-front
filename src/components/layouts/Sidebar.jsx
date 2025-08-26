@@ -7,6 +7,7 @@ import {
 } from "react-icons/md";
 import { FaUsers, FaBook } from "react-icons/fa6";
 import { CgProfile } from "react-icons/cg";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
@@ -16,46 +17,46 @@ const Sidebar = () => {
       <hr />
       <ul>
         <li>
-          <a href="/dashboard" className="d-block">
+          <Link to="/dashboard" className="d-block">
             <MdDashboard className="me-1" />
             Dashboard
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="/books" className="d-block">
+          <Link to="/books" className="d-block">
             <MdMenuBook className="me-1" />
             Books
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="/users" className="d-block">
+          <Link to="/users" className="d-block">
             <FaUsers className="me-1" />
             Users
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="/admins" className="d-block">
+          <Link to="/admins" className="d-block">
             <MdAdminPanelSettings className="me-1" />
             Admins
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="/borrows" className="d-block">
+          <Link to="/borrows" className="d-block">
             <FaBook className="me-1" />
             Borrows
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="/reviews" className="d-block">
+          <Link to="/reviews" className="d-block">
             <MdRateReview className="me-1" />
             Reviews
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="/profile" className="d-block">
+          <Link to="/profile" className="d-block">
             <CgProfile className="me-1" />
             Profile
-          </a>
+          </Link>
         </li>
       </ul>
     </div>

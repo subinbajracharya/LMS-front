@@ -15,9 +15,17 @@ import Books from "./pages/Books";
 import Users from "./pages/Users";
 import Borrows from "./pages/Borrows";
 import AddBooks from "./pages/AddBooks";
+import { useEffect } from "react";
+import { getUserDetail } from "./features/users/userActions";
+import { useDispatch } from "react-redux";
 
 function App() {
   const [count, setCount] = useState(0);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUserDetail());
+  }, []);
 
   return (
     <>

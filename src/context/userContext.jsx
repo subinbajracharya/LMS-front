@@ -1,5 +1,5 @@
 import { useState, useContext, createContext } from "react";
-import { getUserDetail } from "../features/users/usersApi.js";
+import { fetchUserDetail } from "../features/users/usersApi.js";
 
 // Create context
 const UserContext = createContext();
@@ -9,7 +9,7 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({});
 
   const autoLogin = async () => {
-    let data = await getUserDetail();
+    let data = await fetchUserDetail();
 
     if (data.status) {
       setUser(data.user);

@@ -4,10 +4,11 @@ import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
 import Sidebar from "./Sidebar";
 import { Col, Container, Row } from "react-bootstrap";
+import Auth from "../../auth/Auth";
 
 const AdminLayout = () => {
   return (
-    <div>
+    <Auth>
       <main className="dashboard-main">
         <Container fluid>
           <Row>
@@ -24,7 +25,7 @@ const AdminLayout = () => {
         </Container>
       </main>
       <Footer />
-    </div>
+    </Auth>
   );
 };
 
