@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
-import { createBookApi, getAllBooksApi, updateBookApi } from "./booksApi";
-import { setBooks, setPubBooks } from "./booksSlice";
+import { createBookApi, getAllBooksApi, updateBookApi } from "./booksApi.js";
+import { setBooks, setPubBooks } from "./bookSlice.js";
 
 export const fetchAllBooksAction = () => async (dispatch) => {
   let data = await getAllBooksApi();

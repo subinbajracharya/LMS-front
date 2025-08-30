@@ -12,7 +12,6 @@ const RegisterForm = () => {
     fName: "",
     lName: "",
     email: "",
-    role: "",
     phone: "",
     password: "",
   };

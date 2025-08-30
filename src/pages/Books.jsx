@@ -1,38 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
 import { RiDeleteBin5Line, RiEdit2Line } from "react-icons/ri";
 import { MdLibraryAdd } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  fetchAllBooksAction,
+  updateBookAction,
+} from "../features/books/booksAction";
+import { Form } from "react-bootstrap";
+import { setSelectedBooks } from "../features/books/bookSlice";
 
 const Books = () => {
-  const booksList = [
-    // Sample data for books, to be replace with actual data from API or state management
-    {
-      id: 1,
-      status: {
-        available: true,
-        borrowed: false,
-        reserved: false,
-      },
-      title: "The Great Gatsby",
-      borrowed_in: "2023-10-02",
-      returned_on: "2023-10-15",
-    },
-    {
-      id: 2,
-      date: "2023-10-05",
-      title: "1984",
-      borrowed_in: "2023-10-06",
-      returned_on: "2023-10-20",
-    },
-    {
-      id: 3,
-      date: "2023-10-10",
-      title: "To Kill a Mockingbird",
-      borrowed_in: "2023-10-11",
-      returned_on: "2023-10-25",
-    },
-  ];
+  const { books } = useSelector((store) => store.bookStore);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [booksList, setBooksList] = useState([]);
+
+  useEffect(() => {
+    // Api call
+    dispatch(fetchAllBooksAction());
+  }, []);
+
+  useEffect(() => {
+    setBooksList(books);
+  }, [books]);
+
   return (
     <div className="p-5">
       <h1>Books</h1>
@@ -52,33 +46,54 @@ const Books = () => {
               <Form.Check type="checkbox" value="all" />
             </th> */}
             <th>#</th>
+            <th>Thumbnail</th>
             <th>Book Title</th>
             <th>Status</th>
-            <th>Borrowed In</th>
-            <th>Returned On</th>
+            <th>Availability</th>
+            <th>Expected Date</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {booksList.map((book, index) => {
             return (
-              <tr key={book.id}>
+              <tr key={book._id}>
                 {/* <td>
                   <Form.Check type="checkbox" value={book.id} />
                 </td> */}
                 <td>{index + 1}</td>
+                <td>
+                  <img
+                    src={
+                      book.thumbnail.includes("http")
+                        ? book.thumbnail
+                        : import.meta.env.VITE_APP_API_URL +
+                          "/" +
+                          book.thumbnail
+                    }
+                    width={80}
+                  />
+                </td>
                 <td>{book.title}</td>
                 <td>
-                  {book.status
-                    ? book.status.available
-                      ? "Available"
-                      : book.status.borrowed
-                      ? "Borrowed"
-                      : "Reserved"
-                    : "N/A"}
+                  <Form.Check
+                    type="switch"
+                    id="custom-switch"
+                    // label={book.status}
+                    value={book.status}
+                    checked={book.status === "active" ? true : false}
+                    onChange={(e) => {
+                      dispatch(
+                        updateBookAction({
+                          _id: book._id,
+                          status: e.target.checked ? "active" : "inactive",
+                        })
+                      );
+                    }}
+                  />
                 </td>
-                <td>{book.borrowed_in}</td>
-                <td>{book.returned_on}</td>
+                <td>{book.isAvailable ? "Available" : "Not Available"}</td>
+                <td>{book.expectedAvailable?.split("T")[0]}</td>
                 <td>
                   <Button
                     variant="danger"
@@ -89,6 +104,11 @@ const Books = () => {
                   <Button
                     variant="warning"
                     className="d-inline-flex justify-content-center"
+                    onClick={() => {
+                      let selectedBook = books.find((b) => b._id === book._id);
+                      dispatch(setSelectedBooks(selectedBook));
+                      navigate("/books/edit-book", { state: book });
+                    }}
                   >
                     <RiEdit2Line />
                   </Button>
