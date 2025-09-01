@@ -19,6 +19,9 @@ const Header = () => {
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="ms-auto my-2 my-lg-0">
+            <Nav.Link as={Link} to="/">
+              Home
+            </Nav.Link>
             {user?._id ? (
               <>
                 <Nav.Link as={Link} to="dashboard">

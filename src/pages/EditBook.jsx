@@ -66,7 +66,7 @@ const EditBook = () => {
         value: form.thumbnail,
       },
     ],
-    submitButton: "Add Book",
+    submitButton: "Edit Book",
     cancelButton: "Cancel",
   };
 

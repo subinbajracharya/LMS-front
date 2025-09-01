@@ -5,6 +5,7 @@ import { MdLibraryAdd } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
+  deleteBookAction,
   fetchAllBooksAction,
   updateBookAction,
 } from "../features/books/booksAction";
@@ -15,7 +16,6 @@ const Books = () => {
   const { books } = useSelector((store) => store.bookStore);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const [booksList, setBooksList] = useState([]);
 
   useEffect(() => {
@@ -98,6 +98,10 @@ const Books = () => {
                   <Button
                     variant="danger"
                     className="d-inline-flex justify-content-center me-2"
+                    onClick={() => {
+                      let selectedBook = books.find((b) => b._id === book._id);
+                      dispatch(deleteBookAction(selectedBook._id));
+                    }}
                   >
                     <RiDeleteBin5Line />
                   </Button>

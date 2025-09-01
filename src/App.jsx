@@ -19,6 +19,7 @@ import { useEffect } from "react";
 import { getUserDetail } from "./features/users/userActions";
 import { useDispatch } from "react-redux";
 import EditBook from "./pages/EditBook";
+import Home from "./pages/Home";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -33,6 +34,7 @@ function App() {
       <div className="wrapper">
         <Routes>
           <Route path="/" element={<DefaultLayout />}>
+            <Route index element={<Home />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             {/* <Route path="verify-email" element={<VerifyEmail />} /> */}

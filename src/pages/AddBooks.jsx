@@ -123,6 +123,7 @@ const AddBooks = () => {
                 ...form,
                 [e.target.name]: e.target.files[0],
               };
+              console.log(updatedFormData);
               setForm(updatedFormData);
             }}
           />
