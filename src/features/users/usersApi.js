@@ -29,6 +29,7 @@ export const verifyEmail = async (token, email) => {
     return apiProcessor({
         method: 'GET',
         url: `${apiUrl}/verify-email?t=${token}&email=${email}`,
+        data: { t: token, email },
         isPrivate: false,
     })
 }

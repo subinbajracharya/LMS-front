@@ -4,6 +4,7 @@ import {
   MdMenuBook,
   MdAdminPanelSettings,
   MdRateReview,
+  MdOutlineLocalLibrary,
 } from "react-icons/md";
 import { FaUsers, FaBook } from "react-icons/fa6";
 import { CgProfile } from "react-icons/cg";
@@ -12,8 +13,12 @@ import { Link } from "react-router-dom";
 const Sidebar = () => {
   return (
     <div className="sidebar py-4 min-vh-100">
-      <p>Logo here</p>
-      <h4>Welcome, Subin!</h4>
+      <div className="text-center">
+        <p>
+          <MdOutlineLocalLibrary size={55} />
+        </p>
+        <h4>Welcome, Subin!</h4>
+      </div>
       <hr />
       <ul>
         <li>
@@ -31,19 +36,19 @@ const Sidebar = () => {
         <li>
           <Link to="/users" className="d-block">
             <FaUsers className="me-1" />
-            Users
+            All Users
           </Link>
         </li>
         <li>
           <Link to="/admins" className="d-block">
             <MdAdminPanelSettings className="me-1" />
-            Admins
+            All Admins
           </Link>
         </li>
         <li>
           <Link to="/borrows" className="d-block">
             <FaBook className="me-1" />
-            Borrows
+            Borrowings
           </Link>
         </li>
         <li>

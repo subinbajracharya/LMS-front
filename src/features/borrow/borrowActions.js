@@ -1,6 +1,7 @@
 import { fetchAllPublicBooksAction } from "../books/booksAction";
 import { borrowBookApi, getAllBorrowsApi, returnBookApi } from "./borrowApi";
-import { setBorrowList } from "./borrowSlice";
+import { setBorrowList } from "./borrowSlice"
+
 
 export const borrowBookAction = (borrowObj) => async (dispatch) => {
     try {
@@ -13,6 +14,7 @@ export const borrowBookAction = (borrowObj) => async (dispatch) => {
 
 export const fetchAllBorrowsAction = () => async (dispatch) => {
     let data = await getAllBorrowsApi();
+    // console.log(100000, data)
     dispatch(setBorrowList(data?.borrows || []));
 }
 

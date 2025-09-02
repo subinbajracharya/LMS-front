@@ -41,7 +41,6 @@ const Borrows = () => {
             </tr>
           ) : (
             borrowList.map((borrow, index) => {
-              console.log(borrow);
               return (
                 <tr key={borrow._id}>
                   {/* <td>
@@ -63,14 +62,14 @@ const Borrows = () => {
                   <td>{borrow.bookTitle}</td>
                   <td>
                     {borrow.status === "borrowed" ? (
-                      <span className="badge bg-warning text-dark">
+                      <span className="badge bg-warning text-dark text-capitalize">
                         {borrow.status}
                       </span>
                     ) : (
                       <span className="badge bg-success">{borrow.status}</span>
                     )}
                   </td>
-                  <td>{borrow.returnDate?.split("T")[0] || "N/A"}</td>
+                  <td>{borrow.dueDate?.split("T")[0] || "N/A"}</td>
                   <td>
                     {borrow.status === "borrowed" ? (
                       <Button

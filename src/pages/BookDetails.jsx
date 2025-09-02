@@ -58,7 +58,6 @@ const BookDetails = () => {
         defaultActiveKey="description"
         id="justify-tab-example"
         className="my-4"
-        justify
       >
         <Tab eventKey="description" title="Description">
           {book?.description || "No description available."}

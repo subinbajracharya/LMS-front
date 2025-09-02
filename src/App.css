@@ -14,7 +14,7 @@
 .sidebar ul li a {
   text-decoration: none;
   color: #fff;
-  padding: 5px;
+  padding: 8px;
   border-radius: 4px;
   position: relative;
   background: linear-gradient(to right, #198754 50%, #6c757d 50%);
@@ -25,4 +25,32 @@
 
 .sidebar ul li a:hover {
   background-position: left bottom;
+}
+
+.login-page .form-control::placeholder,
+.register-page .form-control::placeholder {
+  color: #fff;
+}
+
+.login-page .form-control:focus,
+.register-page .form-control:focus {
+  box-shadow: none;
+}
+
+.bg-login,
+.bg-register {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.bg-login {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://images.unsplash.com/photo-1623771702313-39dc4f71d275?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  height: calc(100vh - 128px);
+}
+
+.bg-register {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://images.unsplash.com/photo-1549675584-91f19337af3d?q=80&w=1744&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
 }

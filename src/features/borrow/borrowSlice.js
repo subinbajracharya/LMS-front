@@ -5,7 +5,7 @@ const initialState = {
 };
 
 const borrowSlice = createSlice({
-    name: 'borrow',
+    name: 'borrowList',
     initialState,
     reducers: {
         setBorrowList: (state, action) => {
@@ -14,6 +14,6 @@ const borrowSlice = createSlice({
     }
 });
 
-const { actions, reducer } = borrowSlice;
+const { reducer, actions } = borrowSlice;
 export const { setBorrowList } = actions;
 export default reducer;

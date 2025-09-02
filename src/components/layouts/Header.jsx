@@ -3,6 +3,7 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logoutAction } from "../../features/users/userActions";
+import { MdOutlineLocalLibrary } from "react-icons/md";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,10 @@ const Header = () => {
       data-bs-theme="dark"
     >
       <Container fluid>
-        <Navbar.Brand href="/">LMS</Navbar.Brand>
+        <Navbar.Brand href="/" className="d-flex align-items-center">
+          <MdOutlineLocalLibrary className="me-2" />
+          LMS
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="ms-auto my-2 my-lg-0">

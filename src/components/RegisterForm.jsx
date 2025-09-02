@@ -82,7 +82,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="border border-white border-lg p-5 rounded rounded-5">
+    <div className="bg-dark bg-opacity-50 border border-white border-lg p-3 p-md-5 text-white rounded rounded-5">
       <div className="text-center">
         <h1>Register</h1>
         {/* <p>Start tracking your money today.</p> */}
@@ -105,7 +105,9 @@ const RegisterForm = () => {
           <Button variant="primary" type="submit">
             Register
           </Button>
-          <Link to="/login">Already a user?</Link>
+          <Link to="/login" className="text-white">
+            Already have an account?
+          </Link>
         </div>
       </Form>
     </div>

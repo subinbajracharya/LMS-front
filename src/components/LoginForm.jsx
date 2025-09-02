@@ -6,6 +6,7 @@ import CustomInput from "./CustomInput";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUserAction } from "../features/users/userActions";
+import { MdOutlineLocalLibrary } from "react-icons/md";
 
 const LoginForm = () => {
   // Fetched from userContext.jsx
@@ -64,10 +65,13 @@ const LoginForm = () => {
   }, [user?._id]);
 
   return (
-    <div className="border border-white border-lg p-5 rounded rounded-5">
+    <div className="border border-white border-lg p-3 p-md-5 rounded rounded-5 text-white bg-dark bg-opacity-50">
       <div className="text-center">
+        <span>
+          <MdOutlineLocalLibrary size={60} />
+        </span>
         <h1>LMS</h1>
-        <p>Spend mindfully, save effortlessly.</p>
+        <p>Welcome back! Continue your journey of learning and growth.</p>
       </div>
       <hr />
       <Form onSubmit={handleOnSubmit}>
@@ -81,8 +85,8 @@ const LoginForm = () => {
           <Button variant="primary" type="submit">
             Log In
           </Button>
-          <Link to="/signup" className="text-white">
-            Signup?
+          <Link to="/register" className="text-white">
+            Don't have an account?
           </Link>
         </div>
       </Form>
