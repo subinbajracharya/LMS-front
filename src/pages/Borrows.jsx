@@ -66,7 +66,9 @@ const Borrows = () => {
                         {borrow.status}
                       </span>
                     ) : (
-                      <span className="badge bg-success">{borrow.status}</span>
+                      <span className="badge bg-success text-capitalize">
+                        {borrow.status}
+                      </span>
                     )}
                   </td>
                   <td>{borrow.dueDate?.split("T")[0] || "N/A"}</td>

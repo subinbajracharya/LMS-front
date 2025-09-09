@@ -65,11 +65,11 @@ const Books = () => {
                 <td>
                   <img
                     src={
-                      book.thumbnail.includes("http")
+                      book.thumbnail.startsWith("http")
                         ? book.thumbnail
-                        : import.meta.env.VITE_APP_API_URL +
-                          "/" +
-                          book.thumbnail
+                        : `${import.meta?.env?.VITE_APP_API_URL}/${
+                            book.thumbnail || ""
+                          }`
                     }
                     width={80}
                   />
@@ -78,7 +78,7 @@ const Books = () => {
                 <td>
                   <Form.Check
                     type="switch"
-                    id="custom-switch"
+                    id="{`status-${book._id}`}"
                     // label={book.status}
                     value={book.status}
                     checked={book.status === "active" ? true : false}

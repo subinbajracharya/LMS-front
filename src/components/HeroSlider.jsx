@@ -24,17 +24,28 @@ const HeroSlider = () => {
   ];
 
   return (
-    <Carousel fade interval={3000} className="shadow-lg p-0">
+    <Carousel fade interval={3000} controls={false} className="shadow-lg p-0">
       {slidesData.map((slide, index) => (
-        <Carousel.Item key={index}>
+        <Carousel.Item key={index} className="d-flex justify-content-center">
           <img
             className="d-block w-100"
             src={slide.image}
             alt={`Slide ${index + 1}`}
             height={600}
           />
-          <Carousel.Caption className="bg-dark bg-opacity-50 border border-white rounded-4 p-3">
+          <Carousel.Caption
+            className="bg-dark bg-opacity-50 border border-white rounded-4 p-3"
+            style={{
+              right: "auto", // override Bootstrap's left:15%
+              left: "5rem", // push to right
+              bottom: "auto", // remove bottom positioning
+              top: "50%", // vertical center
+              transform: "translateY(-50%)",
+              maxWidth: "520px", // keep it readable
+            }}
+          >
             <h3>{slide.title}</h3>
+            <hr />
             <p>{slide.text}</p>
           </Carousel.Caption>
         </Carousel.Item>

@@ -14,7 +14,7 @@ export const borrowBookApi = async (borrowObj) => {
 export const returnBookApi = async (borrowId) => {
     return apiProcessor({
         method: 'PUT',
-        url: `${apiUrl}/borrow/${borrowId}/return`,
+        url: `${apiUrl}/borrow/return/${borrowId}`,
         isPrivate: true
     });
 }

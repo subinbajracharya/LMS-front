@@ -7,6 +7,11 @@
   padding: 0;
 }
 
+.nav-link:hover,
+.nav-link:active {
+  color: #198754 !important;
+}
+
 .sidebar ul li {
   margin: 10px 0;
 }
@@ -17,14 +22,15 @@
   padding: 8px;
   border-radius: 4px;
   position: relative;
-  background: linear-gradient(to right, #198754 50%, #6c757d 50%);
+  /* background: linear-gradient(to right, #198754 50%, #6c757d 50%);
   background-size: 200% 100%;
-  background-position: right bottom;
+  background-position: right bottom; */
   transition: all 0.4s ease;
 }
 
-.sidebar ul li a:hover {
-  background-position: left bottom;
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+  background-color: #198754;
 }
 
 .login-page .form-control::placeholder,
@@ -53,4 +59,290 @@
 .bg-register {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("https://images.unsplash.com/photo-1549675584-91f19337af3d?q=80&w=1744&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+}
+
+/* Card lift and soft edges */
+.neo-card {
+  border-radius: 1rem;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+.neo-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.1);
+}
+
+/* Title weight and clamping */
+.neo-title {
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+.clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Image fit helper */
+.object-fit-cover {
+  object-fit: cover;
+}
+
+/* Overlay for genre badge on hover */
+.neo-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  opacity: 0;
+  transition: opacity 0.16s ease;
+}
+.neo-card:hover .neo-overlay {
+  opacity: 1;
+}
+
+/* Elegant placeholder (no image) for missing thumbnails */
+.cover-ph-neo {
+  height: 0;
+  padding-top: 133.333%; /* 3:4 */
+  position: relative;
+  background: radial-gradient(
+    100% 140% at 0% 0%,
+    #f7f9ff 0%,
+    #eef2ff 45%,
+    #e9efff 100%
+  );
+  overflow: hidden;
+}
+.cover-ph-neo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(0, 0, 0, 0.04) 100%
+  );
+}
+.cover-chip-neo {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #3347ff;
+  font-size: clamp(18px, 4vw, 30px);
+}
+
+/* List row styling */
+.neo-row {
+  border-radius: 0.9rem;
+}
+
+.neo-thumb {
+  width: 84px;
+}
+
+.neo-thumb .cover-ph-neo,
+.neo-thumb .ratio {
+  border-radius: 0.6rem;
+  overflow: hidden;
+}
+
+/* Rounded cards and subtle lift */
+.object-fit-cover {
+  object-fit: cover;
+}
+
+/* Availability banner */
+.neo-banner {
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+}
+.neo-banner--available {
+  background: #eef7f1;
+  border: 1px solid #d9f0e1;
+  color: #0b7d3b;
+}
+.neo-banner--unavailable {
+  background: #fff4f4;
+  border: 1px solid #ffe1e1;
+  color: #b42318;
+}
+
+/* Tabs polish */
+.neo-tabs .nav-link {
+  border: 0 !important;
+  color: #6c757d;
+}
+.neo-tabs .nav-link.active {
+  color: #0d6efd;
+  background: transparent;
+  border-bottom: 2px solid #0d6efd !important;
+}
+
+/* ListGroup spacing reset */
+.neo-list .list-group-item {
+  border: 0;
+  padding-left: 0;
+  padding-right: 0;
+  margin-bottom: 0.25rem;
+}
+
+/* Elegant placeholder for missing thumbnails (no fallback image) */
+.cover-ph-neo {
+  height: 0;
+  padding-top: 133.333%; /* 3:4 */
+  position: relative;
+  background: radial-gradient(
+    100% 140% at 0% 0%,
+    #f7f9ff 0%,
+    #eef2ff 45%,
+    #e9efff 100%
+  );
+  overflow: hidden;
+}
+.cover-ph-neo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(0, 0, 0, 0.04) 100%
+  );
+}
+
+.cover-chip-neo {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #3347ff;
+  font-size: clamp(18px, 4vw, 30px);
+}
+
+/* Stars */
+.neo-stars {
+  font-size: 1.1rem;
+  line-height: 1;
+  letter-spacing: 0.1rem;
+  color: #ffb300;
+}
+
+/* Gentle card hover + rounded corners */
+.book-card {
+  border-radius: 1rem;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+.book-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.1);
+}
+
+/* Make cover images fill nicely */
+.object-fit-cover {
+  object-fit: cover;
+}
+
+.book-card img {
+  height: 220px;
+}
+
+.cover-chip {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #3347ff;
+  font-size: clamp(18px, 4vw, 28px);
+}
+
+/* Smooth gradient-border, gentle glass, and lift */
+.card-neo {
+  --neo-bg: rgba(255, 255, 255, 0.8);
+  background: linear-gradient(var(--neo-bg), var(--neo-bg)) padding-box,
+    linear-gradient(135deg, #eaf0ff, #dfe7ff, #cdd8ff) border-box;
+  border: 1px solid transparent;
+  backdrop-filter: saturate(120%) blur(6px);
+  transition: transform 0.16s ease, box-shadow 0.16s ease,
+    border-color 0.16s ease;
+  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.2);
+}
+.card-neo:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(16, 24, 40, 0.12);
+  border-color: rgba(13, 110, 253, 0.3);
+}
+
+/* Media area polish */
+.card-neo__media {
+  border-top-left-radius: var(--neo-radius);
+  border-top-right-radius: var(--neo-radius);
+  overflow: hidden;
+}
+.object-fit-cover {
+  object-fit: cover;
+}
+
+/* Primary button with subtle lift */
+.neo-btn {
+  box-shadow: 0 4px 10px rgba(13, 110, 253, 0.18);
+}
+.neo-btn:hover {
+  box-shadow: 0 8px 18px rgba(13, 110, 253, 0.22);
+}
+
+/* Elegant initials placeholder (no fallback image) */
+.cover-ph-neo {
+  height: 0;
+  padding-top: 133.333%; /* 3:4 aspect */
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(
+    110% 140% at 0% 0%,
+    #f7f9ff 0%,
+    #eef2ff 45%,
+    #e9efff 100%
+  );
+}
+.cover-ph-neo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(0, 0, 0, 0.04) 100%
+  );
+}
+.cover-chip-neo {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #3046ff;
+  font-size: clamp(18px, 4vw, 30px);
+}
+
+/* Focus accessibility */
+.card-neo:focus-within {
+  outline: 2px solid rgba(13, 110, 253, 0.35);
+  outline-offset: 2px;
+}
+
+/* Styles for screens wider than 768px */
+@media screen and (min-width: 768px) {
+  .carousel-caption {
+    width: 50%;
+  }
 }

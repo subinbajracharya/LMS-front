@@ -26,6 +26,9 @@ const Header = () => {
             <Nav.Link as={Link} to="/">
               Home
             </Nav.Link>
+            <Nav.Link as={Link} to="/books-listing">
+              Books
+            </Nav.Link>
             {user?._id ? (
               <>
                 <Nav.Link as={Link} to="dashboard">

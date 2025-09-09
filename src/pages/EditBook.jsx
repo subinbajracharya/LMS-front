@@ -3,6 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import { updateBookAction } from "../features/books/booksAction";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const EditBook = () => {
   const dispatch = useDispatch();
@@ -74,6 +75,7 @@ const EditBook = () => {
     e.preventDefault();
     let data = await dispatch(updateBookAction(form));
     if (data.status == "success") {
+      toast.success("Book updated");
       navigate("/books");
     }
   };

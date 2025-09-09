@@ -1,12 +1,14 @@
+import { toast } from "react-toastify";
 import { fetchAllPublicBooksAction } from "../books/booksAction";
 import { borrowBookApi, getAllBorrowsApi, returnBookApi } from "./borrowApi";
 import { setBorrowList } from "./borrowSlice"
-
 
 export const borrowBookAction = (borrowObj) => async (dispatch) => {
     try {
         const response = await borrowBookApi(borrowObj);
         dispatch(fetchAllPublicBooksAction());
+
+        toast[data.status](data.message)
     } catch (error) {
         throw error;
     }
@@ -25,7 +27,6 @@ export const returnBookAction = (borrowId) => async (dispatch) => {
         if (data.status !== 'success') {
             dispatch(fetchAllBorrowsAction());
             dispatch(fetchAllPublicBooksAction());
-
         }
     } catch (error) {
         throw error;

@@ -9,15 +9,18 @@ import {
 import { FaUsers, FaBook } from "react-icons/fa6";
 import { CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Sidebar = () => {
+  const { user } = useSelector((store) => store.userStore);
+  console.log(user);
   return (
     <div className="sidebar py-4 min-vh-100">
-      <div className="text-center">
+      <div className="text-center text-capitalize">
         <p>
           <MdOutlineLocalLibrary size={55} />
         </p>
-        <h4>Welcome, Subin!</h4>
+        <h4>Welcome, {user.fName}!</h4>
       </div>
       <hr />
       <ul>
@@ -34,6 +37,12 @@ const Sidebar = () => {
           </Link>
         </li>
         <li>
+          <Link to="/borrows" className="d-block">
+            <FaBook className="me-1" />
+            Borrowings
+          </Link>
+        </li>
+        <li>
           <Link to="/users" className="d-block">
             <FaUsers className="me-1" />
             All Users
@@ -43,12 +52,6 @@ const Sidebar = () => {
           <Link to="/admins" className="d-block">
             <MdAdminPanelSettings className="me-1" />
             All Admins
-          </Link>
-        </li>
-        <li>
-          <Link to="/borrows" className="d-block">
-            <FaBook className="me-1" />
-            Borrowings
           </Link>
         </li>
         <li>

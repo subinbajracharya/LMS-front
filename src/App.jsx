@@ -20,6 +20,7 @@ import { getUserDetail } from "./features/users/userActions";
 import { useDispatch } from "react-redux";
 import EditBook from "./pages/EditBook";
 import Home from "./pages/Home";
+import BooksListing from "./pages/BooksListing";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -37,6 +38,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
+            <Route path="books-listing" element={<BooksListing />} />
             {/* <Route path="verify-email" element={<VerifyEmail />} /> */}
             <Route path="book-details/:bookid" element={<BookDetails />} />
           </Route>
@@ -51,7 +53,7 @@ function App() {
           </Route>
         </Routes>
       </div>
-      <ToastContainer />
+      <ToastContainer position="top-center" />
     </>
   );
 }
