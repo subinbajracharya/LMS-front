@@ -61,7 +61,7 @@ const LoginForm = () => {
   const lastLocation = location?.state?.from?.pathname || "/dashboard";
 
   useEffect(() => {
-    user?._id && navigate(lastLocation);
+    user?._id && navigate(lastLocation, { replace: true });
   }, [user?._id]);
 
   return (

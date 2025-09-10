@@ -274,11 +274,11 @@
   backdrop-filter: saturate(120%) blur(6px);
   transition: transform 0.16s ease, box-shadow 0.16s ease,
     border-color 0.16s ease;
-  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.2);
+  /* box-shadow: 0 6px 18px rgba(16, 24, 40, 0.2); */
 }
 .card-neo:hover {
   transform: translateY(-3px);
-  box-shadow: 0 16px 36px rgba(16, 24, 40, 0.12);
+  /* box-shadow: 0 16px 36px rgba(16, 24, 40, 0.12); */
   border-color: rgba(13, 110, 253, 0.3);
 }
 

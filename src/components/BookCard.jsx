@@ -10,33 +10,29 @@ export default function BookCard({
   genre,
   thumbnail,
 }) {
-  const initials =
-    (title || "")
-      .split(" ")
-      .filter(Boolean)
-      .slice(0, 2)
-      .map((w) => w[0]?.toUpperCase())
-      .join("") || "BK";
-
   return (
-    <Card className="card-neo h-100 border-0 rounded-3 overflow-hidden p-2">
-      <div className="card-neo__media position-relative">
-        {thumbnail ? (
-          <img
-            src={thumbnail}
-            alt={title}
-            className="w-100 h-100 object-fit-cover"
-          />
-        ) : (
-          <div className="cover-ph-neo rounded-top d-flex align-items-center justify-content-center">
-            <div className="cover-chip-neo">{initials}</div>
-          </div>
-        )}
+    <Card
+      className="card-neo d-flex flex-column h-100 border-1 rounded-3 overflow-hidden p-2"
+      style={{ minHeight: "360px" }}
+    >
+      <div style={{ height: "200px", overflow: "hidden" }}>
+        <img
+          src={thumbnail}
+          alt={title}
+          className="w-100 h-100 object-fit-cover rounded"
+        />
       </div>
 
       <Card.Body className="d-flex flex-column">
-        <Card.Title as="h5" className="mb-1" title={title} aria-label={title}>
-          {title}
+        <Card.Title as="h5" className="mb-1">
+          <Link
+            to={`/book-details/${id}`}
+            className="text-decoration-none link-dark"
+            title={title}
+            aria-label={title}
+          >
+            {title}
+          </Link>
         </Card.Title>
 
         <div className="text-muted small mb-3">

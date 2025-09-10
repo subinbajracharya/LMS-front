@@ -93,7 +93,7 @@ const BooksListing = () => {
 
       {/* Search + Genre */}
       <Row className="g-2 mb-3">
-        <Col className="text-end">
+        <Col className="text-md-end">
           <ToggleButtonGroup
             type="radio"
             name="view"

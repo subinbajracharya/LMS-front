@@ -170,14 +170,16 @@ const BookDetails = () => {
                     <span className="fw-semibold">Available now</span>
                     <Button
                       variant="primary"
-                      onClick={() => {
+                      onClick={async () => {
                         if (!user?._id) {
                           toast.info("Please log in to borrow book");
-                          // navigate("/login", { state: { from: location } });
+                          navigate("/login", {
+                            state: { from: location },
+                          });
                           return;
                         }
 
-                        dispatch(
+                        await dispatch(
                           borrowBookAction({
                             bookId: _id,
                             title,
@@ -192,8 +194,8 @@ const BookDetails = () => {
                 ) : (
                   <div className="d-flex align-items-center justify-content-between gap-3">
                     <span>
-                      <span className="fw-semibold">Book borrowed.</span>{" "}
-                      Expected back:{" "}
+                      <span className="fw-semibold">Book borrowed.</span> Please
+                      return book by:{" "}
                       <span className="fw-semibold">
                         {book?.expectedAvailable?.split("T")[0] || "N/A"}
                       </span>

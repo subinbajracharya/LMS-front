@@ -21,6 +21,7 @@ import { useDispatch } from "react-redux";
 import EditBook from "./pages/EditBook";
 import Home from "./pages/Home";
 import BooksListing from "./pages/BooksListing";
+import Profile from "./pages/Profile";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -48,6 +49,7 @@ function App() {
             <Route path="books" element={<Books />} />
             <Route path="users" element={<Users />} />
             <Route path="borrows" element={<Borrows />} />
+            <Route path="profile" element={<Profile />} />
             <Route path="books/add-books" element={<AddBooks />} />
             <Route path="books/edit-book" element={<EditBook />} />
           </Route>

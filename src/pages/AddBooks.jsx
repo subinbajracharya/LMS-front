@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Card, Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { createBookAction } from "../features/books/booksAction.js";
 import { useDispatch } from "react-redux";
@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom";
 
 const AddBooks = () => {
   const dispatch = useDispatch();
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
+
   // This component will handle adding new books to the library
   const [form, setForm] = useState({
     title: "",
@@ -18,6 +19,7 @@ const AddBooks = () => {
     description: "",
   });
 
+  // Page meta and fields (kept as in your original)
   const AddBooks = [
     {
       title: "Add New Book",
@@ -25,7 +27,7 @@ const AddBooks = () => {
       fields: [
         {
           name: "title",
-          label: "Title",
+          label: "Book Title",
           type: "text",
           placeholder: "Enter book title",
         },
@@ -76,66 +78,103 @@ const AddBooks = () => {
 
     let data = await dispatch(createBookAction(formData));
     if (data.status == "success") {
-      Navigate("/books");
+      navigate("/books");
     }
   };
 
   return (
-    <div className="p-5">
-      {console.log(AddBooks)}
-      <h2>{AddBooks[0].title}</h2>
-      <p>{AddBooks[0].description}</p>
-      <Form onSubmit={handleOnSubmit}>
-        {AddBooks[0].fields.map((field, index) => (
-          <Form.Group
-            key={index}
-            className="mb-3"
-            controlId={`formBasic${field.label}`}
-          >
-            <Form.Label className="form-label">{field.label}</Form.Label>
-            <Form.Control
-              type={field.type}
-              placeholder={field.placeholder}
-              name={field.name}
-              onChange={(e) => {
-                // Handle input change
-                let updatedFormData = {
-                  ...form,
-                  [e.target.name]: e.target.value,
-                };
-                setForm(updatedFormData);
-              }}
-            />
-          </Form.Group>
-        ))}
-        <Form.Group className="mb-3" controlId={`formBasic-fileUpload`}>
-          <Form.Label className="form-label">
-            Upload Thumbnail for Book
-          </Form.Label>
-          <Form.Control
-            type="file"
-            placeholder="Upload book thumbnail"
-            name="image"
-            accept="image/*"
-            onChange={(e) => {
-              // Handle input change
-              let updatedFormData = {
-                ...form,
-                [e.target.name]: e.target.files[0],
-              };
-              console.log(updatedFormData);
-              setForm(updatedFormData);
-            }}
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          {AddBooks[0].submitButton}
-        </Button>
-        <Link to="/books" className="btn btn-secondary ms-2">
-          {AddBooks[0].cancelButton}
-        </Link>
-      </Form>
-    </div>
+    <Container fluid className="p-4 p-md-5">
+      {/* Header */}
+      <Button
+        variant="outline-secondary"
+        size="sm"
+        onClick={() => navigate(-1)}
+        className="mb-3"
+      >
+        ← Back
+      </Button>
+      <div className="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+        <div className="d-flex align-items-center gap-3">
+          <div>
+            <h2 className="mb-1">{AddBooks[0].title}</h2>
+            <small className="text-muted d-block">
+              {AddBooks[0].description}
+            </small>
+          </div>
+        </div>
+      </div>
+
+      {/* Form Card */}
+      <Card className="border-0 shadow-sm rounded-3">
+        <Card.Body>
+          <Form id="add-book-form" onSubmit={handleOnSubmit}>
+            {/* Responsive two-column layout on md+ */}
+            <Row className="g-3">
+              {AddBooks[0].fields.map((field, index) => (
+                <Col xs={12} md={6} key={index}>
+                  <Form.Group
+                    className="mb-3"
+                    controlId={`formBasic${field.label}`}
+                  >
+                    <Form.Label className="fw-semibold">
+                      {field.label}
+                    </Form.Label>
+                    <Form.Control
+                      as={field.type === "textarea" ? "textarea" : "input"}
+                      type={field.type !== "textarea" ? field.type : undefined}
+                      rows={field.type === "textarea" ? 4 : undefined}
+                      placeholder={field.placeholder}
+                      name={field.name}
+                      onChange={(e) => {
+                        // Handle input change (kept in-page as in your original)
+                        let updatedFormData = {
+                          ...form,
+                          [e.target.name]: e.target.value,
+                        };
+                        setForm(updatedFormData);
+                      }}
+                    />
+                  </Form.Group>
+                </Col>
+              ))}
+
+              {/* Thumbnail upload as full-width row under fields */}
+              <Col xs={12}>
+                <Form.Group className="mb-3" controlId={`formBasic-fileUpload`}>
+                  <Form.Label className="fw-semibold">
+                    Upload Thumbnail for Book
+                  </Form.Label>
+                  <Form.Control
+                    type="file"
+                    placeholder="Upload book thumbnail"
+                    name="image"
+                    accept="image/*"
+                    onChange={(e) => {
+                      // Handle input change (kept in-page as in your original)
+                      let updatedFormData = {
+                        ...form,
+                        [e.target.name]: e.target.files[0],
+                      };
+                      setForm(updatedFormData);
+                    }}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+          </Form>
+
+          {/* Bottom actions for mobile users who scroll */}
+          <div className="d-flex gap-2 justify-content-end mt-2">
+            <Link to="/books" className="btn btn-outline-secondary">
+              {AddBooks[0].cancelButton}
+            </Link>
+            <Button type="submit" form="add-book-form" variant="primary">
+              {AddBooks[0].submitButton}
+            </Button>
+          </div>
+        </Card.Body>
+      </Card>
+    </Container>
   );
 };
 
