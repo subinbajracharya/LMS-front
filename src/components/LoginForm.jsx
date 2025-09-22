@@ -49,7 +49,16 @@ const LoginForm = () => {
     let data = await dispatch(loginUserAction(form));
     console.log(data);
 
-    toast[data.status](data.message);
+    // toast[data.status](data.message);
+    if (!data) {
+      toast.error("Login failed. Please try again.");
+      return;
+    }
+    if (data.status === "success") {
+      toast.success(data.message || "Logged in successfully");
+    } else {
+      toast.error(data.message || "Invalid login credentials");
+    }
   };
 
   const handleOnChange = (e) => {

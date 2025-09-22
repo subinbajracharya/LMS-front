@@ -18,19 +18,27 @@ export const getUserDetail = () => async (dispatch) => {
 };
 
 export const loginUserAction = (form) => async (dispatch) => {
-    let data = await loginUser(form);
+    try {
+        const data = await loginUser(form);
 
-    // if success
-    if (data.status === "success") {
-        // accessToken
-        storeToken(data.accessToken, "access");
-        // refreshToken
-        storeToken(data.refreshToken, "refresh");
-        // get user detail
-        dispatch(getUserDetail());
+        // if success
+        if (data.status === "success") {
+            // accessToken
+            storeToken(data.accessToken, "access");
+            // refreshToken
+            storeToken(data.refreshToken, "refresh");
+            // get user detail
+            dispatch(getUserDetail());
+        }
+
+        return { status: data.status, message: data.message };
+    } catch (error) {
+        const msg =
+            err?.response?.data?.message ||
+            err?.message ||
+            "Login failed. Please try again.";
+        return { status: "error", message: msg };
     }
-
-    return { status: data.status, message: data.message };
 };
 
 export const logoutAction = () => (dispatch) => {

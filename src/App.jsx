@@ -22,6 +22,7 @@ import EditBook from "./pages/EditBook";
 import Home from "./pages/Home";
 import BooksListing from "./pages/BooksListing";
 import Profile from "./pages/Profile";
+import Admins from "./pages/Admins";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -47,8 +48,9 @@ function App() {
           <Route path="/" element={<AdminLayout />}>
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="books" element={<Books />} />
-            <Route path="users" element={<Users />} />
             <Route path="borrows" element={<Borrows />} />
+            <Route path="users" element={<Users />} />
+            <Route path="admins" element={<Admins />} />
             <Route path="profile" element={<Profile />} />
             <Route path="books/add-books" element={<AddBooks />} />
             <Route path="books/edit-book" element={<EditBook />} />

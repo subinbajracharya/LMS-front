@@ -16,11 +16,13 @@ export default function BookCard({
       style={{ minHeight: "360px" }}
     >
       <div style={{ height: "200px", overflow: "hidden" }}>
-        <img
-          src={thumbnail}
-          alt={title}
-          className="w-100 h-100 object-fit-cover rounded"
-        />
+        <Link to={`/book-details/${id}`} className="d-block h-100">
+          <img
+            src={thumbnail}
+            alt={title}
+            className="w-100 h-100 object-fit-cover rounded"
+          />
+        </Link>
       </div>
 
       <Card.Body className="d-flex flex-column">

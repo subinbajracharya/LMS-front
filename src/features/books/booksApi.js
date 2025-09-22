@@ -1,10 +1,10 @@
 import { apiProcessor } from "../../utils/axiosHelper";
 const apiUrl = import.meta.env.VITE_APP_API_URL + "/api/v1";
 
-export const getAllBooksApi = async (pubBook = false) => {
+export const getAllBooksApi = async (pubBook = false, query = "", page = 1) => {
     return apiProcessor({
         method: "GET",
-        url: pubBook ? `${apiUrl}/books/pub-books` : `${apiUrl}/books`,
+        url: pubBook ? `${apiUrl}/books/pub-books${"?q=" + query + "&page=" + page}` : `${apiUrl}/books`,
         isPrivate: !pubBook,
     });
 };

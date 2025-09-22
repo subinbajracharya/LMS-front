@@ -65,87 +65,93 @@ const Books = () => {
           </tr>
         </thead>
         <tbody>
-          {[...booksList]
-            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-            .map((book, index) => {
-              return (
-                <tr key={book._id}>
-                  {/* <td>
+          {booksList.length === 0 ? (
+            <tr>
+              <td colSpan={7}>No books found.</td>
+            </tr>
+          ) : (
+            [...booksList]
+              .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+              .map((book, index) => {
+                return (
+                  <tr key={book._id}>
+                    {/* <td>
                   <Form.Check type="checkbox" value={book.id} />
                 </td> */}
-                  <td>{index + 1}</td>
-                  <td>
-                    <Link to={`/book-details/${book._id}`}>
-                      <img
-                        src={
-                          book.thumbnail.startsWith("http")
-                            ? book.thumbnail
-                            : `${import.meta?.env?.VITE_APP_API_URL}/${
-                                book.thumbnail || ""
-                              }`
-                        }
-                        alt={book.title}
-                        width={80}
+                    <td>{index + 1}</td>
+                    <td>
+                      <Link to={`/book-details/${book._id}`}>
+                        <img
+                          src={
+                            book.thumbnail.startsWith("http")
+                              ? book.thumbnail
+                              : `${import.meta?.env?.VITE_APP_API_URL}/${
+                                  book.thumbnail || ""
+                                }`
+                          }
+                          alt={book.title}
+                          width={80}
+                        />
+                      </Link>
+                    </td>
+                    <td>
+                      <Link
+                        to={`/book-details/${book._id}`}
+                        className="text-decoration-none link-dark"
+                      >
+                        {book.title}
+                      </Link>
+                    </td>
+                    <td>
+                      <Form.Check
+                        type="switch"
+                        id="{`status-${book._id}`}"
+                        // label={book.status}
+                        value={book.status}
+                        checked={book.status === "active" ? true : false}
+                        onChange={(e) => {
+                          dispatch(
+                            updateBookAction({
+                              _id: book._id,
+                              status: e.target.checked ? "active" : "inactive",
+                            })
+                          );
+                        }}
                       />
-                    </Link>
-                  </td>
-                  <td>
-                    <Link
-                      to={`/book-details/${book._id}`}
-                      className="text-decoration-none link-dark"
-                    >
-                      {book.title}
-                    </Link>
-                  </td>
-                  <td>
-                    <Form.Check
-                      type="switch"
-                      id="{`status-${book._id}`}"
-                      // label={book.status}
-                      value={book.status}
-                      checked={book.status === "active" ? true : false}
-                      onChange={(e) => {
-                        dispatch(
-                          updateBookAction({
-                            _id: book._id,
-                            status: e.target.checked ? "active" : "inactive",
-                          })
-                        );
-                      }}
-                    />
-                  </td>
-                  <td>{book.isAvailable ? "Available" : "Not Available"}</td>
-                  <td>{book.expectedAvailable?.split("T")[0]}</td>
-                  <td>
-                    <Button
-                      variant="danger"
-                      className="d-inline-flex justify-content-center me-2"
-                      onClick={() => {
-                        let selectedBook = books.find(
-                          (b) => b._id === book._id
-                        );
-                        dispatch(deleteBookAction(selectedBook._id));
-                      }}
-                    >
-                      <RiDeleteBin5Line />
-                    </Button>
-                    <Button
-                      variant="warning"
-                      className="d-inline-flex justify-content-center"
-                      onClick={() => {
-                        let selectedBook = books.find(
-                          (b) => b._id === book._id
-                        );
-                        dispatch(setSelectedBooks(selectedBook));
-                        navigate("/books/edit-book", { state: book });
-                      }}
-                    >
-                      <RiEdit2Line />
-                    </Button>
-                  </td>
-                </tr>
-              );
-            })}
+                    </td>
+                    <td>{book.isAvailable ? "Available" : "Not Available"}</td>
+                    <td>{book.expectedAvailable?.split("T")[0]}</td>
+                    <td>
+                      <Button
+                        variant="danger"
+                        className="d-inline-flex justify-content-center me-2"
+                        onClick={() => {
+                          let selectedBook = books.find(
+                            (b) => b._id === book._id
+                          );
+                          dispatch(deleteBookAction(selectedBook._id));
+                        }}
+                      >
+                        <RiDeleteBin5Line />
+                      </Button>
+                      <Button
+                        variant="warning"
+                        className="d-inline-flex justify-content-center"
+                        onClick={() => {
+                          let selectedBook = books.find(
+                            (b) => b._id === book._id
+                          );
+                          dispatch(setSelectedBooks(selectedBook));
+                          navigate("/books/edit-book", { state: book });
+                        }}
+                      >
+                        <RiEdit2Line />
+                      </Button>
+                    </td>
+                  </tr>
+                );
+              })
+          )}
         </tbody>
       </Table>
     </Container>

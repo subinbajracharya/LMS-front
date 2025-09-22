@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   MdDashboard,
   MdMenuBook,
@@ -13,7 +13,62 @@ import { useSelector } from "react-redux";
 
 const Sidebar = () => {
   const { user } = useSelector((store) => store.userStore);
-  console.log(user);
+  const [filteredMenu, setFilteredMenu] = useState([]);
+
+  const menuList = [
+    {
+      link: "/dashboard",
+      label: "Dashboard",
+      icon: <MdDashboard className="me-1" />,
+      isAdminOnly: false,
+    },
+    {
+      link: "/books",
+      label: "Books",
+      icon: <MdMenuBook className="me-1" />,
+      isAdminOnly: false,
+    },
+    {
+      link: "/borrows",
+      label: "Borrowings",
+      icon: <FaBook className="me-1" />,
+      isAdminOnly: false,
+    },
+    {
+      link: "/users",
+      label: "All Users",
+      icon: <FaUsers className="me-1" />,
+      isAdminOnly: true,
+    },
+    {
+      link: "/admins",
+      label: "All Admins",
+      icon: <MdAdminPanelSettings className="me-1" />,
+      isAdminOnly: true,
+    },
+    {
+      link: "/reviews",
+      label: "Reviews",
+      icon: <MdRateReview className="me-1" />,
+      isAdminOnly: false,
+    },
+    {
+      link: "/profile",
+      label: "Profile",
+      icon: <CgProfile className="me-1" />,
+      isAdminOnly: false,
+    },
+  ];
+
+  useEffect(() => {
+    if (user?.role === "admin") {
+      setFilteredMenu(menuList);
+    } else {
+      const filtered = menuList.filter((menu) => !menu.isAdminOnly);
+      setFilteredMenu(filtered);
+    }
+  }, [user]);
+
   return (
     <div className="sidebar py-4 min-vh-100">
       <div className="text-center text-capitalize">
@@ -24,48 +79,14 @@ const Sidebar = () => {
       </div>
       <hr />
       <ul>
-        <li>
-          <Link to="/dashboard" className="d-block">
-            <MdDashboard className="me-1" />
-            Dashboard
-          </Link>
-        </li>
-        <li>
-          <Link to="/books" className="d-block">
-            <MdMenuBook className="me-1" />
-            Books
-          </Link>
-        </li>
-        <li>
-          <Link to="/borrows" className="d-block">
-            <FaBook className="me-1" />
-            Borrowings
-          </Link>
-        </li>
-        <li>
-          <Link to="/users" className="d-block">
-            <FaUsers className="me-1" />
-            All Users
-          </Link>
-        </li>
-        <li>
-          <Link to="/admins" className="d-block">
-            <MdAdminPanelSettings className="me-1" />
-            All Admins
-          </Link>
-        </li>
-        <li>
-          <Link to="/reviews" className="d-block">
-            <MdRateReview className="me-1" />
-            Reviews
-          </Link>
-        </li>
-        <li>
-          <Link to="/profile" className="d-block">
-            <CgProfile className="me-1" />
-            Profile
-          </Link>
-        </li>
+        {filteredMenu.map((menu) => (
+          <li key={menu.link}>
+            <Link to={menu.link} className="d-block">
+              {menu.icon}
+              {menu.label}
+            </Link>
+          </li>
+        ))}
       </ul>
     </div>
   );
