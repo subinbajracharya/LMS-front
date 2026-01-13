@@ -6,9 +6,12 @@ import {
   fetchAllBorrowsAction,
   returnBookAction,
 } from "../features/borrow/borrowActions";
+import { CustomModal } from "../components/CustomModal";
+import ReviewForm from "../components/forms/ReviewForm";
 
 const Borrows = () => {
   const { borrowList } = useSelector((store) => store.borrowStore);
+  const [borrow, setBorrow] = useState({});
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -107,6 +110,7 @@ const Borrows = () => {
                         <Button
                           variant="secondary"
                           className="d-inline-flex justify-content-center me-2"
+                          onClick={() => setBorrow(borrow)}
                         >
                           Review
                         </Button>
@@ -120,6 +124,12 @@ const Borrows = () => {
           )}
         </tbody>
       </Table>
+      {/* Rating Modal */}
+      {borrow?._id && (
+        <CustomModal title="Leave your review" onHide={setBorrow}>
+          <ReviewForm borrow={borrow} setBorrow={setBorrow} />
+        </CustomModal>
+      )}
     </Container>
   );
 };

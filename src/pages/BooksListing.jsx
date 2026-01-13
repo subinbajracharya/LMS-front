@@ -65,17 +65,14 @@ const BooksListing = () => {
       p.set("page", "1");
       setSearchParams(p, { replace: true });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [totalPages]);
 
-  // (Optional nice UX): when the search box changes, reset to page 1
   useEffect(() => {
     const p = new URLSearchParams(searchParams.toString());
     if ((Number(p.get("page")) || 1) !== 1) {
       p.set("page", "1");
       setSearchParams(p, { replace: true });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
   // 3) Slice the list for the current page

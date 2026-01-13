@@ -23,6 +23,7 @@ import Home from "./pages/Home";
 import BooksListing from "./pages/BooksListing";
 import Profile from "./pages/Profile";
 import Admins from "./pages/Admins";
+import Reviews from "./pages/Reviews";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -51,6 +52,7 @@ function App() {
             <Route path="borrows" element={<Borrows />} />
             <Route path="users" element={<Users />} />
             <Route path="admins" element={<Admins />} />
+            <Route path="reviews" element={<Reviews />} />
             <Route path="profile" element={<Profile />} />
             <Route path="books/add-books" element={<AddBooks />} />
             <Route path="books/edit-book" element={<EditBook />} />

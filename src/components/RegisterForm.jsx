@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import useForm from "../hooks/useForm";
-import CustomInput from "./CustomInput";
+import CustomInput from "./forms/CustomInput";
 import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../features/users/usersApi";
 import { toast } from "react-toastify";
